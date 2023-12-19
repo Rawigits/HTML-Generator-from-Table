@@ -1,0 +1,58 @@
+"style_green_header_table": |-
+  <style>
+  .customtable {
+    max-width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-width: 1px;
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-style: solid;
+    overflow-x: auto;
+    margin: 0 auto;
+  }
+
+  th, td {
+    color: #6d6d6f;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    border-width: 1px;
+    border: 1px solid black;
+    padding: 4px;
+    text-align: center;
+  }
+
+  th {
+    color: #ffffff;
+    background-color: #00b312;
+  }
+
+  @media only screen and (max-width: 480px) {
+    .customtable {
+      width: 100%;
+      margin: 0;
+      overflow-x: auto;
+    }
+
+    th, td {
+      font-size: 13px;
+      padding: 2px;
+    }
+  }
+
+  @media only screen and (max-width: 768px) and (min-width: 481px){
+    .customtable {
+      width: 100%;
+      margin: 0;
+      overflow-x: auto;
+    }
+
+    th, td {
+      font-size: 16px;
+      padding: 2px;
+    }
+  }
+  </style>
+"tableclass": |-
+  <table class='customtable'>
