@@ -21,6 +21,7 @@
     border: 1px solid black;
     padding: 4px;
     text-align: center;
+    cursor: pointer;
   }
 
   th {
@@ -54,5 +55,59 @@
     }
   }
   </style>
+
+  <script>
+    function sortTable(n) {
+      var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+      table = document.querySelector(".customtable");
+      switching = true;
+      dir = "asc"; // Set the sorting direction to ascending
+
+      while (switching) {
+        switching = false;
+        rows = table.rows;
+
+        for (i = 1; i < rows.length - 1; i++) {
+          shouldSwitch = false;
+          x = rows[i].getElementsByTagName("TD")[n];
+          y = rows[i + 1].getElementsByTagName("TD")[n];
+
+          if (dir == "asc") {
+            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+              shouldSwitch = true;
+              break;
+            }
+          } else if (dir == "desc") {
+            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+              shouldSwitch = true;
+              break;
+            }
+          }
+        }
+
+        if (shouldSwitch) {
+          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+          switching = true;
+          switchcount++;
+        } else {
+          if (switchcount == 0 && dir == "asc") {
+            dir = "desc";
+            switching = true;
+          }
+        }
+      }
+
+      updateSortIndicator(n, dir);
+    }
+
+    function updateSortIndicator(column, direction) {
+      var headers = document.querySelectorAll(".icon");
+      headers.forEach(function(header) {
+        header.innerHTML = "";
+      });
+      var clickedHeader = document.querySelector(".customtable th:nth-child(" + (column + 1) + ")");
+      clickedHeader.querySelector(".icon").innerHTML = direction === "asc" ? "↓" : "↑";
+    }
+  </script>
 "tableclass": |-
   <table class='customtable'>
